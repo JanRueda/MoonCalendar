@@ -751,7 +751,7 @@ function Moon_2($pdf,$tipo_Luna, $dia_luna,$i){
 //que asocian el nombre del santo con el dia de este
  function Nombres_Santos($i,$cMonth){
 
-  $Url = 'http://localhost/calendar_git/json/'.$cMonth.'.json';
+  $Url = 'http://localhost/MoonCalendar/json/'.$cMonth.'.json';
   $mi_cadena = '';
 
   $mi_url= $Url; 
