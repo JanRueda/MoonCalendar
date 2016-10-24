@@ -320,7 +320,7 @@ $dia_actual_santos = $dia_actual;
 
       // Es San Anton y se pinta de lila
       //$pdf->SetFillColor(2,157,116); y los ultimos parametros de cell 1 es para alterar color de fondo
-      $pdf->SetFillColor(140,101,211);
+      $pdf->SetFillColor(2,157,116);
       $pdf->SetTextColor(0,0,0);
       $pdf->Cell(40,11, $dia_actual,'LRT',0,'C',1);
       // A partir de aqui el resto de las celdas estaran en negro
@@ -367,7 +367,7 @@ $dia_actual_santos = $dia_actual;
 
     //>> Junio <<
 
-    //San Antón
+    //San Antonio
     elseif( $dia_actual==13 && $cMonth==6 ){
 
     $pdf->SetTextColor(255,0,0);
@@ -510,7 +510,7 @@ $dia_actual_santos = $dia_actual;
 
           // Es San Anton y se pinta de lila
           //$pdf->SetFillColor(2,157,116); y los ultimos parametros de cell 1  es para alterar color de fondo
-          $pdf->SetFillColor(140,101,211);
+          $pdf->SetFillColor(2,157,116);
           $pdf->SetTextColor(0,0,0);
           $pdf->Cell(40,11, $Nombre_Santo,'LRB',0,'C',1);
           // A partir de aqui el resto de las celdas estaran en negro
