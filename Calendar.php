@@ -503,7 +503,9 @@ $dia_actual_santos = $dia_actual;
         // A partir de esta se va sumando uno a uno
         //$pdf->SetTextColor(24,255,255);
 
-        $Nombre_Santo = Nombres_Santos($dia_para_santos, $cMonth);  // Funcion para conocer Santo del dia 
+        $Nombre_Santo = Nombres_Santos($dia_para_santos, $cMonth);  // Funcion para conocer Santo del dia
+        //Indico que reconozca utf8  
+        $Nombre_Santo = utf8_decode($Nombre_Santo);
         //$pdf->Cell(40,11, $Nombre_Santo.$dia_para_santos.'-'.$i.' ND> '.$numero_dia,'LRB',0,'C',0);
 
         if ( $Nombre_Santo == 'San Anton' ) {
@@ -593,6 +595,8 @@ $dia_actual_santos = $dia_actual;
       //Suma el numero real para dia de santos
 
       $Nombre_Santo = Nombres_Santos($dia_para_santos, $cMonth);  // Funcion para conocer Santo del dia 
+      //Indico que reconozca utf8  
+      $Nombre_Santo = utf8_decode($Nombre_Santo);
       //$pdf->Cell(40,12, $Nombre_Santo.$dia_para_santos.'-'.$i.' ND> '.$numero_dia,'LRB',0,'C',0);
       $pdf->Cell(40,12, $Nombre_Santo,'LRB',0,'C',0);
 
