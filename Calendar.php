@@ -3,7 +3,7 @@
 //  AutoRoad : Automatizaciones para la vida cotidiana
 //  Función  : Genera calendario en PDF con el nombre de los santos y las fases lunares
 //  Autores  : Jan Rueda
-//  Fecha    : 05/10/2016
+//  Fecha    : 24/10/2016
 //  Licencia : Open Source
 //========================================================================================
 
