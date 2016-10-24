@@ -205,7 +205,7 @@ function Mes($monthNames, $cYear, $cMonth,$pdf, $posicion_primer_dia, $ultimo_di
 
 // Fin de la primera fila
 
-$pdf->SetFont('Arial','',13);
+$pdf->SetFont('Arial','',11);
 
 // Comienzo filas de nombre de santos  
 
@@ -489,7 +489,7 @@ $dia_actual_santos = $dia_actual;
     if ( $numero_dia == 7 ){
 
       $numero_dia = 0;
-      $pdf->SetFont('Arial','',13);   // Letra segunda fila santos
+      $pdf->SetFont('Arial','',11);   // Letra segunda fila santos
       $pdf->Ln();
 
       // Al dia actual le resto 7 que son los dias de la primear semana 
@@ -587,7 +587,7 @@ $dia_actual_santos = $dia_actual;
     //Hacer lo mismo con la ultima linea - NO SE PONE AQUI EL ROJO DE DOMINGO PORQUE NUNCA LLEGA ESTA FILA A DOMINGO
     $pdf->Ln();
 
-    $pdf->SetFont('Arial','',13); 
+    $pdf->SetFont('Arial','',11); 
     // Escribo santos de ultima fila  
     for ( $i=0; $i < $ultimos_dias; $i++ ) { 
 
