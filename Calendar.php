@@ -232,6 +232,7 @@ $dia_actual_santos = $dia_actual;
         // Corrijo la i santo por se array y empezar de cero
         $Nombre_Santo = Nombres_Santos($primer_dia_santos, $cMonth);  // Funcion para conocer Santo del dia 
         //$pdf->Cell(40,11, $Nombre_Santo.$dia_actual_santos,'LR',0,'C',0);
+        $Nombre_Santo = utf8_decode($Nombre_Santo);
         $pdf->Cell(40,11, $Nombre_Santo,'LR',0,'C',0);
         $primer_dia_santos = $primer_dia_santos +1; 
         // A partir de aqui el resto de las celdas estaran en negro
