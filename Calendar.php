@@ -513,6 +513,8 @@ $dia_actual_santos = $dia_actual;
 
           // Es San Anton y se pinta de lila
           //$pdf->SetFillColor(2,157,116); y los ultimos parametros de cell 1  es para alterar color de fondo
+          //Indico que reconozca utf8  
+          $Nombre_Santo = utf8_decode('San Antón');
           $pdf->SetFillColor(2,157,116);
           $pdf->SetTextColor(0,0,0);
           $pdf->Cell(40,11, $Nombre_Santo,'LRB',0,'C',1);
