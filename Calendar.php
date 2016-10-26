@@ -3,7 +3,7 @@
 //  AutoRoad : Automatizaciones para la vida cotidiana
 //  Función  : Genera calendario en PDF con el nombre de los santos y las fases lunares
 //  Autores  : Jan Rueda
-//  Fecha    : 24/10/2016
+//  Fecha    : 26/10/2016
 //  Licencia : Open Source
 //========================================================================================
 
@@ -747,7 +747,7 @@ function Moon_2($pdf,$tipo_Luna, $dia_luna,$i){
     $Coord_Y = 5;
   } 
 
-  $pdf->Image('img/'.$tipo_Luna.'.jpg' , $Coord_X ,$Coord_Y,'JPG');
+  $pdf->Image('http://localhost/MoonCalendar/img/'.$tipo_Luna.'.JPG' , $Coord_X ,$Coord_Y,'JPG');
   $pdf->Cell(40,10,$tipo_Luna.' '.$dia_luna,'LRBT', 0,'C');
 }
 
