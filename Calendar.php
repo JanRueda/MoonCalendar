@@ -16,6 +16,9 @@ $pdf = new FPDF();
 $monthNames = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", 
 "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
 
+//Automatizar url y directorio local del fichero
+$dir = "http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/';
+
 // Si no existe mes y año seleccionar los actuales
 if (!isset($_REQUEST["mes"])) $_REQUEST["mes"] = date("n");
 if (!isset($_REQUEST["anio"])) $_REQUEST["anio"] = date("Y");
@@ -64,16 +67,16 @@ for ($i=1; $i <= 12; $i++) {
         }
 
       // Año actual
-      Mes($monthNames, $cYear, $cMonth,$pdf, $posicion_primer_dia, $ultimo_dia, $dia_actual);
+      Mes($monthNames, $cYear, $cMonth,$pdf, $posicion_primer_dia, $ultimo_dia, $dia_actual,$dir);
       //$pdf->Write(5,$_POST['santo']);
 
 }
 
 // LLamada a la funcion para representar el primer mes del siguiente año
-EneroProxYear($cYear,$cMonth,$monthNames,$pdf);
+EneroProxYear($cYear,$cMonth,$monthNames,$pdf,$dir);
 
 // Escribe el primer mes del siguiente año
-function EneroProxYear($cYear,$cMonth,$monthNames,$pdf){
+function EneroProxYear($cYear,$cMonth,$monthNames,$pdf,$dir){
 
       //// Enero siguiente año /////
             
@@ -101,13 +104,13 @@ function EneroProxYear($cYear,$cMonth,$monthNames,$pdf){
           $posicion_primer_dia = 6;
         }
 
-        Mes($monthNames, $cYear, $cMonth,$pdf, $posicion_primer_dia, $ultimo_dia, $dia_actual);
+        Mes($monthNames, $cYear, $cMonth,$pdf, $posicion_primer_dia, $ultimo_dia, $dia_actual,$dir);
 
       /// Fin Enero  Del año siguiente ////
 
 }
 
-function Mes($monthNames, $cYear, $cMonth,$pdf, $posicion_primer_dia, $ultimo_dia, $dia_actual){
+function Mes($monthNames, $cYear, $cMonth,$pdf, $posicion_primer_dia, $ultimo_dia, $dia_actual,$dir){
 
   //Añadimos una pagina
   $pdf->AddPage('L','','');
@@ -118,7 +121,7 @@ function Mes($monthNames, $cYear, $cMonth,$pdf, $posicion_primer_dia, $ultimo_di
 
   //Mostramos nombre del Mes y Año actual
   Year_mouth($pdf, $monthNames, $cYear, $cMonth);
-  MostrarLunas($pdf, $cMonth, $cYear, $monthNames);
+  MostrarLunas($pdf, $cMonth, $cYear, $monthNames,$dir);
 
   //>>>>>
 
@@ -133,7 +136,6 @@ function Mes($monthNames, $cYear, $cMonth,$pdf, $posicion_primer_dia, $ultimo_di
 
   // Salto de linea
   $pdf->Ln(); 
-
   //>>>Celda dias de la semana    
   $pdf->Cell(40,10, 'Lunes',1,0,'C',0);     // empty cell with left,top, and right borders, C >> centrar linea
   $pdf->Cell(40,10, 'Martes',1,0,'C',0);    //Cell(ancho,alto, 'texto',1,0,'C',0);    
@@ -230,7 +232,7 @@ $dia_actual_santos = $dia_actual;
         // Se pinta el dia de rojo
         $pdf->SetTextColor(255,0,0);
         // Corrijo la i santo por se array y empezar de cero
-        $Nombre_Santo = Nombres_Santos($primer_dia_santos, $cMonth);  // Funcion para conocer Santo del dia 
+        $Nombre_Santo = Nombres_Santos($primer_dia_santos, $cMonth,$dir);  // Funcion para conocer Santo del dia 
         //$pdf->Cell(40,11, $Nombre_Santo.$dia_actual_santos,'LR',0,'C',0);
         $Nombre_Santo = utf8_decode($Nombre_Santo);
         $pdf->Cell(40,11, $Nombre_Santo,'LR',0,'C',0);
@@ -241,7 +243,7 @@ $dia_actual_santos = $dia_actual;
       } else {
 
         // Corrijo la i santo por se array y empezar de cero
-        $Nombre_Santo = Nombres_Santos($primer_dia_santos, $cMonth);  // Funcion para conocer Santo del dia 
+        $Nombre_Santo = Nombres_Santos($primer_dia_santos, $cMonth,$dir);  // Funcion para conocer Santo del dia 
         //$pdf->Cell(40,11, $Nombre_Santo.$dia_actual_santos,'LR',0,'C',0);
 
         $Nombre_Santo = utf8_decode($Nombre_Santo);
@@ -266,7 +268,7 @@ $dia_actual_santos = $dia_actual;
       }
 
     // Corrijo la i santo por se array y empezar de cero
-    //$Nombre_Santo = Nombres_Santos($primer_dia_santos, $cMonth);  // Funcion para conocer Santo del dia 
+    //$Nombre_Santo = Nombres_Santos($primer_dia_santos, $cMonth,$dir);  // Funcion para conocer Santo del dia 
     //$pdf->Cell(40,11, $Nombre_Santo.$dia_actual_santos,'LR',0,'C',0);
     //$pdf->Cell(40,11, $Nombre_Santo,'LR',0,'C',0);
     //$primer_dia_santos = $primer_dia_santos +1; 
@@ -504,7 +506,7 @@ $dia_actual_santos = $dia_actual;
         // A partir de esta se va sumando uno a uno
         //$pdf->SetTextColor(24,255,255);
 
-        $Nombre_Santo = Nombres_Santos($dia_para_santos, $cMonth);  // Funcion para conocer Santo del dia
+        $Nombre_Santo = Nombres_Santos($dia_para_santos, $cMonth,$dir);  // Funcion para conocer Santo del dia
         //Indico que reconozca utf8  
         $Nombre_Santo = utf8_decode($Nombre_Santo);
         //$pdf->Cell(40,11, $Nombre_Santo.$dia_para_santos.'-'.$i.' ND> '.$numero_dia,'LRB',0,'C',0);
@@ -597,7 +599,7 @@ $dia_actual_santos = $dia_actual;
       //$pdf->Cell(40,10, 'Da >> '.$dia_para_santos.' f> '.$ultimos_dias,'LRB',0,'C',0);
       //Suma el numero real para dia de santos
 
-      $Nombre_Santo = Nombres_Santos($dia_para_santos, $cMonth);  // Funcion para conocer Santo del dia 
+      $Nombre_Santo = Nombres_Santos($dia_para_santos, $cMonth,$dir);  // Funcion para conocer Santo del dia 
       //Indico que reconozca utf8  
       $Nombre_Santo = utf8_decode($Nombre_Santo);
       //$pdf->Cell(40,12, $Nombre_Santo.$dia_para_santos.'-'.$i.' ND> '.$numero_dia,'LRB',0,'C',0);
@@ -631,7 +633,7 @@ function Year_mouth($pdf, $monthNames, $cYear, $cMonth){
 }
 
 //Muestra las fases de las lunas gracias al api
-function MostrarLunas($pdf, $cMonth, $cYear, $monthNames){
+function MostrarLunas($pdf, $cMonth, $cYear, $monthNames,$dir){
 
   $date = $cMonth.'/01/2016';
   $moon_phase = 4;
@@ -685,7 +687,7 @@ function MostrarLunas($pdf, $cMonth, $cYear, $monthNames){
       $fecha_Fase_Lunar_no_space = explode(" ", $fecha_Fase_Lunar);
       $dia_luna = $fecha_Fase_Lunar_no_space[2];
 
-      Moon_2($pdf,$tipo_Luna, $dia_luna,$i);
+      Moon_2($pdf,$tipo_Luna, $dia_luna,$i,$dir);
        
     }
 
@@ -719,7 +721,7 @@ function nombre_fase($tipo_Luna){
 
 
 //Muestra las imagenes de la luna y las celdas con el nombre de la fase lunar que le corresponde.
-function Moon_2($pdf,$tipo_Luna, $dia_luna,$i){
+function Moon_2($pdf,$tipo_Luna, $dia_luna,$i,$dir){
 
   $tipo_Luna = nombre_fase($tipo_Luna);
 
@@ -747,7 +749,7 @@ function Moon_2($pdf,$tipo_Luna, $dia_luna,$i){
     $Coord_Y = 5;
   } 
 
-  $pdf->Image('http://localhost/MoonCalendar/img/'.$tipo_Luna.'.JPG' , $Coord_X ,$Coord_Y,'JPG');
+  $pdf->Image($dir.'img/'.$tipo_Luna.'.JPG' , $Coord_X ,$Coord_Y,'JPG');
   $pdf->Cell(40,10,$tipo_Luna.' '.$dia_luna,'LRBT', 0,'C');
 }
 
@@ -756,9 +758,9 @@ function Moon_2($pdf,$tipo_Luna, $dia_luna,$i){
 
 //Escribe el nombre de los santos segun el dia del mes a partir de los ficheros json 
 //que asocian el nombre del santo con el dia de este
- function Nombres_Santos($i,$cMonth){
+ function Nombres_Santos($i,$cMonth,$dir){
 
-  $Url = 'http://localhost/MoonCalendar/json/'.$cMonth.'.json';
+  $Url = $dir.'json/'.$cMonth.'.json';
   $mi_cadena = '';
 
   $mi_url= $Url; 
