@@ -104,7 +104,7 @@ function EneroProxYear($cYear,$cMonth,$monthNames,$pdf,$dir){
           $posicion_primer_dia = 6;
         }
 
-        Mes($monthNames, $cYear, $cMonth,$pdf, $posicion_primer_dia, $ultimo_dia, $dia_actual,$dir);
+       // Mes($monthNames, $cYear, $cMonth,$pdf, $posicion_primer_dia, $ultimo_dia, $dia_actual,$dir);
 
       /// Fin Enero  Del año siguiente ////
 
@@ -870,8 +870,10 @@ function hex2rgb($hex) {
 
 // MostrarLunas($pdf, $cMonth, $cYear, $monthNames);
 
-  //Mustro pdf
-  $pdf->Output();
+//Envio pdf a browser cuando se termine de ejecutar
+//$pdf->Output('D',"calendario.pdf");
+//Mustro pdf en browser
+$pdf->Output();
 
 
 ?>
