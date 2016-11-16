@@ -1,6 +1,11 @@
  <?php 
 
-// Pinta festivos y domingos
+//========================================================================================
+//
+//  Funcion que pinta festivos y domingos
+//  
+//========================================================================================
+
  function fest_Dom($pdf, $dia_actual,$numero_dia, $cMonth){
 
 
