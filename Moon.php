@@ -10,7 +10,7 @@
 function MostrarLunas($pdf, $cMonth, $cYear, $monthNames,$dir){
 
   $date = $cMonth.'/01/2016';
-  $moon_phase = 4;
+  $moon_phase = 5;
 
   $Url = 'http://api.usno.navy.mil/moon/phase?date='.$date.'&nump='.$moon_phase;
   $mi_cadena = '';
@@ -50,6 +50,12 @@ function MostrarLunas($pdf, $cMonth, $cYear, $monthNames,$dir){
   //$pdf->Write(5, $monthNames[$cMonth-1].' '.$cYear);
   $pdf->Ln(2);
 
+  //Guardo en un arry el mes actual dado por la api
+  $fecha_Fase_Lunar = $mi_cadena['phasedata'][0]['date'];
+  $fecha_Fase_Lunar_no_space = explode(" ", $fecha_Fase_Lunar);
+  // Separo el mes dentro de la información del array
+  $Control_mes_Lunar = $fecha_Fase_Lunar_no_space[1];
+
     for ($i=0; $i < $Total_fases_luna; $i++) { 
 
       //Muestro array
@@ -60,8 +66,19 @@ function MostrarLunas($pdf, $cMonth, $cYear, $monthNames,$dir){
       $fecha_Fase_Lunar = $mi_cadena['phasedata'][$i]['date'];
       $fecha_Fase_Lunar_no_space = explode(" ", $fecha_Fase_Lunar);
       $dia_luna = $fecha_Fase_Lunar_no_space[2];
+      // Separo el mes dentro de la información del array
+      $mes_luna = $fecha_Fase_Lunar_no_space[1];
 
-      Moon_2($pdf,$tipo_Luna, $dia_luna,$i,$dir);
+      //Controlo el ultimo evento lunar para que esté dentro del mes
+      //Esto se hace porque existen meses con 5 lunas
+      If ($Control_mes_Lunar == $mes_luna){
+
+      	Moon_2($pdf,$tipo_Luna, $dia_luna,$i,$dir);
+
+      }
+      	  
+
+      
        
     }
 
@@ -119,8 +136,12 @@ function Moon_2($pdf,$tipo_Luna, $dia_luna,$i,$dir){
     $Coord_X = 100;
     $Coord_Y = 5;
   }
-  else {
+  elseif ( $i == 3 ){
     $Coord_X = 140;
+    $Coord_Y = 5;
+  } 
+  else {
+    $Coord_X = 180;
     $Coord_Y = 5;
   } 
 
