@@ -2,11 +2,13 @@
 
 //========================================================================================
 //
-//  Funcion que pinta festivos y domingos
+//  Funcion que pinta festivos y domingos de 2017
 //  
 //========================================================================================
 
  function fest_Dom($pdf, $dia_actual,$numero_dia, $cMonth){
+
+
 
  	//>> Enero  <<
 
@@ -47,8 +49,10 @@
       // A partir de aqui el resto de las celdas estaran en negro
       $pdf->SetTextColor(0,0,0);
     }
+
+    //>> Abril <<
     // Jueves santo 
-    elseif( $dia_actual==24 && $cMonth==3 ){
+    elseif( $dia_actual==13 && $cMonth==4 ){
 
     $pdf->SetTextColor(255,0,0);
     $pdf->Cell(40,11, $dia_actual,'LRT',0,'C',0);
@@ -56,7 +60,7 @@
     $pdf->SetTextColor(0,0,0);
     }
    // Viernes santo 
-    elseif( $dia_actual==25 && $cMonth==3 ){
+    elseif( $dia_actual==14 && $cMonth==4 ){
 
     $pdf->SetTextColor(255,0,0);
     $pdf->Cell(40,11, $dia_actual,'LRT',0,'C',0);
@@ -64,7 +68,20 @@
     $pdf->SetTextColor(0,0,0);
     }
     // Martes de Pascua
-    elseif( $dia_actual==29 && $cMonth==3 ){
+    elseif( $dia_actual==18 && $cMonth==4 ){
+
+    $pdf->SetTextColor(255,0,0);
+    $pdf->Cell(40,11, $dia_actual,'LRT',0,'C',0);
+    // A partir de aqui el resto de las celdas estaran en negro
+    $pdf->SetTextColor(0,0,0);
+    }
+
+    //>> Mayo << 
+
+    // 1 de Mayo pintado en Calendar.php por ser dia de primera linea
+
+    // Letras Galegas
+    elseif( $dia_actual==17 && $cMonth==5 ){
 
     $pdf->SetTextColor(255,0,0);
     $pdf->Cell(40,11, $dia_actual,'LRT',0,'C',0);
@@ -76,14 +93,6 @@
 
     //San Antonio
     elseif( $dia_actual==13 && $cMonth==6 ){
-
-    $pdf->SetTextColor(255,0,0);
-    $pdf->Cell(40,11, $dia_actual,'LRT',0,'C',0);
-    // A partir de aqui el resto de las celdas estaran en negro
-    $pdf->SetTextColor(0,0,0);
-    }
-    //San Juan
-    elseif( $dia_actual==24 && $cMonth==6 ){
 
     $pdf->SetTextColor(255,0,0);
     $pdf->Cell(40,11, $dia_actual,'LRT',0,'C',0);

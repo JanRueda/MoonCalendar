@@ -198,6 +198,18 @@ function Mes($monthNames, $cYear, $cMonth,$pdf, $posicion_primer_dia, $ultimo_di
         $pdf->SetTextColor(0,0,0);
         }
 
+        // Se pinta de rojo por ser 1 de Mayo por ser dia del Trabajo
+        elseif( $dia_actual==1 && $cMonth==5 ){
+
+        // Se pinta el dia de rojo
+        $pdf->SetTextColor(255,0,0);
+        $pdf->Cell(40,11, $dia_actual,'LRT',0,'C',0);
+
+        // A partir de aqui el resto de las celdas estaran en negro
+        $pdf->SetTextColor(0,0,0);
+        }
+
+
 
 
         // Si es el dia 6 se pinta de rojo por ser Domingo
