@@ -30,7 +30,7 @@ if (!isset($_REQUEST["anio"])) $_REQUEST["anio"] = date("Y");
 for ($i=1; $i <= 12; $i++) { 
 
       $cMonth = "$i";
-      $cYear = $_REQUEST["anio"];
+      $cYear = $_REQUEST["anio"]+1;
        
       $prev_year = $cYear;
       $next_year = $cYear;
@@ -186,6 +186,18 @@ function Mes($monthNames, $cYear, $cMonth,$pdf, $posicion_primer_dia, $ultimo_di
         // A partir de aqui el resto de las celdas estaran en negro
         $pdf->SetTextColor(0,0,0);
         }
+
+        // Se pinta de rojo por ser 1 de Noviembre por ser santos
+        elseif( $dia_actual==1 && $cMonth==11 ){
+
+        // Se pinta el dia de rojo
+        $pdf->SetTextColor(255,0,0);
+        $pdf->Cell(40,11, $dia_actual,'LRT',0,'C',0);
+
+        // A partir de aqui el resto de las celdas estaran en negro
+        $pdf->SetTextColor(0,0,0);
+        }
+
 
 
         // Si es el dia 6 se pinta de rojo por ser Domingo

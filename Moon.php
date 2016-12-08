@@ -9,7 +9,7 @@
 //Muestra las fases de las lunas gracias al api
 function MostrarLunas($pdf, $cMonth, $cYear, $monthNames,$dir){
 
-  $date = $cMonth.'/01/2016';
+  $date = $cMonth.'/01/'.$cYear;
   $moon_phase = 5;
 
   $Url = 'http://api.usno.navy.mil/moon/phase?date='.$date.'&nump='.$moon_phase;

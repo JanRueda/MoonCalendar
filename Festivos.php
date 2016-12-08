@@ -8,8 +8,9 @@
 
  function fest_Dom($pdf, $dia_actual,$numero_dia, $cMonth){
 
-
  	//>> Enero  <<
+
+    // 1 de enero pintado en Calendar.php por ser dia de primera linea
 
     //Reyes
     if( $dia_actual==6 && $cMonth==1 ){
@@ -126,13 +127,7 @@
     //>> Noviembre <<
     
     //Shamain   
-    elseif( $dia_actual==1 && $cMonth==11 ){
-
-    $pdf->SetTextColor(255,0,0);
-    $pdf->Cell(40,11, $dia_actual,'LRT',0,'C',0);
-    // A partir de aqui el resto de las celdas estaran en negro
-    $pdf->SetTextColor(0,0,0);
-    }
+    // 1 de Noviembre pintado en Calendar.php por ser dia de primera linea
 
     //>> Diciembre <<
 
