@@ -15,8 +15,8 @@ require('Moon.php');
 $pdf = new FPDF();
 
 // Array con los meses del año
-$monthNames = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", 
-"Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+$monthNames = array("ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", 
+"AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE");
 
 //Automatizar url y directorio local del fichero
 $dir = "http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/';
@@ -30,7 +30,7 @@ if (!isset($_REQUEST["anio"])) $_REQUEST["anio"] = date("Y");
 for ($i=1; $i <= 12; $i++) { 
 
       $cMonth = "$i";
-      $cYear = $_REQUEST["anio"]+1;
+      $cYear = $_REQUEST["anio"];
        
       $prev_year = $cYear;
       $next_year = $cYear;
@@ -123,8 +123,9 @@ function Mes($monthNames, $cYear, $cMonth,$pdf, $posicion_primer_dia, $ultimo_di
 
   //Mostramos nombre del Mes y Año actual
   Year_mouth($pdf, $monthNames, $cYear, $cMonth);
+  $pdf->SetFont('Arial','B',100);
   MostrarLunas($pdf, $cMonth, $cYear, $monthNames,$dir);
-
+  $pdf->SetFont('Arial','B',18);
   //>>>>>
 
   // Prueba Formulario
@@ -157,7 +158,7 @@ function Mes($monthNames, $cYear, $cMonth,$pdf, $posicion_primer_dia, $ultimo_di
 
 
   // Escribo primera fila 
-  $pdf->SetFont('Arial','',30);
+  $pdf->SetFont('Arial','B',32);
   //$pdf->SetY(10); // Posicion del texto dentro de la celda
   $primer_dia_santos = "nada";   // Variable de control para guardar primer dia de santos
 
@@ -233,7 +234,7 @@ function Mes($monthNames, $cYear, $cMonth,$pdf, $posicion_primer_dia, $ultimo_di
 
 // Fin de la primera fila
 
-$pdf->SetFont('Arial','',11);
+$pdf->SetFont('Arial','B',11);       /// Letra y tamaño para santos
 
 // Comienzo filas de nombre de santos  
 
@@ -320,7 +321,7 @@ $dia_actual_santos = $dia_actual;
 
   while ( $dia_actual <= $ultimo_dia ){
 
-    $pdf->SetFont('Arial','',30); 
+    $pdf->SetFont('Arial','B',32); 
     //Si estamos a principio de la semana escribo el Ln()
 
     
@@ -341,7 +342,7 @@ $dia_actual_santos = $dia_actual;
     if ( $numero_dia == 7 ){
 
       $numero_dia = 0;
-      $pdf->SetFont('Arial','',11);   // Letra segunda fila santos
+      $pdf->SetFont('Arial','B',12);   // Letra segunda fila santos
       $pdf->Ln();
 
       // Al dia actual le resto 7 que son los dias de la primear semana 
@@ -441,7 +442,7 @@ $dia_actual_santos = $dia_actual;
     //Hacer lo mismo con la ultima linea - NO SE PONE AQUI EL ROJO DE DOMINGO PORQUE NUNCA LLEGA ESTA FILA A DOMINGO
     $pdf->Ln();
 
-    $pdf->SetFont('Arial','',11); 
+    $pdf->SetFont('Arial','B',12); 
     // Escribo santos de ultima fila  
     for ( $i=0; $i < $ultimos_dias; $i++ ) { 
 
@@ -474,9 +475,9 @@ $dia_actual_santos = $dia_actual;
 
 //Escribe el Mes y el Año actual
 function Year_mouth($pdf, $monthNames, $cYear, $cMonth){
-
+  $pdf->SetFont('Arial','B',23);                                 // Tamaño letra, negrita de  mes 
   //$pdf->Multicell(280,15, $monthNames[$cMonth-1].' '.$cYear,1,0,'C',0);
-  $pdf->SetXY(220,20);
+  $pdf->SetXY(210,20);                                            // Posicion de mes
   $pdf->Write(5, $monthNames[$cMonth-1].' '.$cYear);
   //$pdf->Ln(15);
 

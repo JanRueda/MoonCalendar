@@ -119,7 +119,7 @@ function Moon_2($pdf,$tipo_Luna, $dia_luna,$i,$dir){
 
   // $pdf->AddPage();
   //$pdf->Ln(5);
-  $pdf->SetFont('Arial','',15);
+  $pdf->SetFont('Arial','B',16);                                       //TAMAÑOS Y LETRAS DE DIAS, LUNAS 
   //$pdf->Ln(5);
   //$pdf->Cell(40,10,$tipo_Luna.' '.$dia_luna,'LRBT', 0,'C');
   //Coordenadas para mostrar las imagenes de la luna
